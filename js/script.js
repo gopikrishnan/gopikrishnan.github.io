@@ -41,9 +41,13 @@ function readMessage(data) {
 database.on('child_added', readMessage);
 
 function showMyFace() {
-  navigator.mediaDevices.getUserMedia({audio:true, video:true})
-    .then(stream => yourVideo.srcObject = stream)
-    .then(stream => pc.addStream(stream));
+  // navigator.mediaDevices.getUserMedia({audio:true, video:true})
+  //   .then(stream => yourVideo.srcObject = stream)
+  //   .then(stream => pc.addStream(stream));
+  var constraints = { video: true, audio: true }
+navigator.mediaDevices.getUserMedia(constraints)
+  .then(stream => video.srcObject = stream)
+  .catch(e => console.error(e));
 }
 
 function showFriendsFace() {
